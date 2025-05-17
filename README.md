@@ -101,6 +101,14 @@ Then run the ExecuteAsync() method as a coroutine:
 	StartCoroutine(gpuCompute.ExecuteAsync());
  
 ***
+### Dispose:
+Once you are done with your GPU Compute instance, make sure to dispose it to prevent memory leaks on the GPU using the required disposal method as followed:
+
+	gpuCompute.Dipose();
+ 	gpuCompute.DisposeLocal();
+  	gpuCompute.DisposeGlobal();
+   
+***
 ### Get GPU Memory Used:
 Memory used by the GPU is automatically tracked and can be viewed as either total bytes, or a formatted string.
 
