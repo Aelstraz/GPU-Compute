@@ -42,7 +42,7 @@ Global buffers can be made and set in the same way local buffers are set.
 	GPUCompute.CreateEmptyGlobalBuffer<Vector3>("myEmptyGlobalBuffer", myEmptyGlobalBufferLength);
  	GPUCompute.SetBufferData<Vector2>("myGlobalVectorBuffer", ref myGlobalVectorBuffer);
  
-In order to use them in your compute shader, they first need to be linked to your gpuCompute instance as shown:
+In order to use them in your compute shader, they first need to be linked to your GPU Compute instance as shown:
 
 	gpuCompute.LinkGlobalBuffer("globalBufferName");
 	gpuCompute.LinkGlobalTexture("globalTextureName", "globalTextureName");
@@ -55,7 +55,7 @@ First get the number of threads as declared in your compute shader:
 	Vector3Int shaderNumOfThreads = new Vector3Int(8, 8, 1);
 
 Then select one of the options below (1D, 2D, 3D) based on your workload needs. Thread group sizes can also be set manually.
-
+***
 ### Thread Group Size (1D):
 For a one-dimensional workload (e.g. an array) pass your job length and shader number of threads into the SetCalculatedThreadGroupSize() method:
 
