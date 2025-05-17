@@ -1,5 +1,8 @@
 # GPU Compute (Unity)
 GPU Compute provides an easy way to setup & execute GPU compute shaders in Unity. Create and manage buffers, track GPU memory usage & execution time, automatically calculate thread group sizes & buffer strides- all in one class.
+
+### Importing/Installing:
+Simply add the entire folder into your projects Assets folder.
 ***
 ### Instantiate:
 Start by creating a new instance of GPU Compute, providing the compute shader you want to use:
