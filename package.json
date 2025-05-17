@@ -1,5 +1,5 @@
 {
-  "name": "Aelstraz.GPU-Compute",
+  "name": "aelstraz.gpu-compute",
   "version": "1.0.0",
   "displayName": "GPU Compute",
   "description": "GPU Compute provides an easy way to setup & execute GPU compute shaders in Unity. Create and manage buffers, track GPU memory usage & execution time, automatically calculate thread group sizes & buffer strides- all in one class.",
