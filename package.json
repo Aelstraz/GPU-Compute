@@ -1,9 +1,9 @@
 {
-  "name": "Aelstraz.GPUCompute",
+  "name": "Aelstraz.GPU-Compute",
   "version": "1.0.0",
   "displayName": "GPU Compute",
-  "description": "GPUCompute provides an easy way to setup & execute GPU compute shaders in Unity. Create and manage buffers, track GPU memory usage & execution time, automatically calculate thread group sizes & buffer strides- all in one class.",
-  "unity": "6000.1.0f1",
+  "description": "GPU Compute provides an easy way to setup & execute GPU compute shaders in Unity. Create and manage buffers, track GPU memory usage & execution time, automatically calculate thread group sizes & buffer strides- all in one class.",
+  "unity": "2020.1",
   "type": "library",
   "documentationUrl": "https://github.com/Aelstraz/GPU-Compute/blob/main/README.md",
   "changelogUrl": "https://github.com/Aelstraz/GPU-Compute/releases",
