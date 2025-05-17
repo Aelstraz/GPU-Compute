@@ -10,6 +10,14 @@ Start by creating a new instance of GPU Compute, providing the compute shader yo
 	GPUCompute gpuCompute = new GPUCompute(myComputeShader);
 
 ***
+### Dispose:
+When you are done with your GPU Compute instance, make sure to dispose it to prevent memory leaks on the GPU- using one of the disposal methods as followed:
+
+	gpuCompute.Dipose();
+ 	gpuCompute.DisposeLocal();
+  	gpuCompute.DisposeGlobal();
+
+***
 ### Creating & Setting Buffers/Textures/Variables:
 To create a buffer simply input the struct type of the buffer, it's name, and the actual data to be passed into the buffer (the struct type and length of the data is used to automatically set the size of the buffer). Empty buffers can also be made.
 	
@@ -99,15 +107,7 @@ For async execution first subscribe to the OnExecuteComplete event as shown belo
 Then run the ExecuteAsync() method as a coroutine:
 	
 	StartCoroutine(gpuCompute.ExecuteAsync());
- 
-***
-### Dispose:
-Once you are done with your GPU Compute instance, make sure to dispose it to prevent memory leaks on the GPU using the required disposal method as followed:
-
-	gpuCompute.Dipose();
- 	gpuCompute.DisposeLocal();
-  	gpuCompute.DisposeGlobal();
-   
+  
 ***
 ### Get GPU Memory Used:
 Memory used by the GPU is automatically tracked and can be viewed as either total bytes, or a formatted string.
