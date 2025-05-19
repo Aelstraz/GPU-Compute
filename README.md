@@ -175,7 +175,7 @@ Unity C# code
 		 
 		 	//setting up to execute kernel 1
 		        gpuCompute.SetCalculatedThreadGroupSize2D(gridLength, gridLength, new Vector3Int(8, 8, 1)); 
-		 	// Setting triangle buffer to kernel 1 only
+		 	//setting triangle buffer to kernel 1 only
 		        gpuCompute.SetBuffer<int>("triangles", ref triangles, new int[] { 1 }); 
 	
 			//execute kernel 1
@@ -183,9 +183,9 @@ Unity C# code
 		 	//get the processed buffer data from GPU
 		        gpuCompute.GetBufferData<int>("triangles", ref triangles);
 	  	}
-    		
-    		//assign data to the mesh
-		mesh.vertices = vertices;
+
+		//assign data to the mesh
+  		mesh.vertices = vertices;
 		mesh.uv = uvs;
 		mesh.triangles = triangles;
 		mesh.normals = normals;
