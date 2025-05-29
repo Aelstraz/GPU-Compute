@@ -19,10 +19,10 @@ When you are done with your GPU Compute instance, make sure to dispose it to pre
 
 ***
 ### Creating & Setting Buffers/Textures/Variables:
-To create a buffer simply input the struct type of the buffer, it's name, and the actual data to be passed into the buffer (the struct type and length of the data is used to automatically set the size of the buffer). Empty buffers can also be made.
+To create a buffer simply input the buffer name, and the actual data to be passed into the buffer (the data struct type and length of the data is used to automatically set the size of the buffer). Empty buffers can also be made by supplying the data struct type.
 	
- 	gpuCompute.SetBuffer<Vector3>("vertices", ref vertices);
- 	gpuCompute.SetBuffer<Vector2>("uvs", ref uvs);
+ 	gpuCompute.SetBuffer("vertices", ref vertices);
+ 	gpuCompute.SetBuffer("uvs", ref uvs);
   	gpuCompute.CreateEmptyBuffer<int>("myEmptyBuffer", myEmptyBufferLength);
  	
 
@@ -31,16 +31,16 @@ Buffer data, textures and variables values can be set like so:
 	gpuCompute.SetInt("myInt", myInt);
  	gpuCompute.SetFloat("myFloat", myFloat);
   	gpuCompute.SetVector("myVector", myVector);
-   	gpuCompute.SetBufferData<Vector2>("myVectorBuffer", ref myVectorBuffer);
+   	gpuCompute.SetBufferData("myVectorBuffer", ref myVectorBuffer);
    	gpuCompute.SetRenderTexture("myRenderTexture", myRenderTexture);
 
 ***
 ### Global Buffers/Textures:
 Global buffers can be made and set in the same way local buffers are set.
 
-	GPUCompute.SetGlobalBuffer<Vector3>("globalVertices", ref vertices);	
+	GPUCompute.SetGlobalBuffer("globalVertices", ref vertices);	
 	GPUCompute.CreateEmptyGlobalBuffer<Vector3>("myEmptyGlobalBuffer", myEmptyGlobalBufferLength);
- 	GPUCompute.SetBufferData<Vector2>("myGlobalVectorBuffer", ref myGlobalVectorBuffer);
+ 	GPUCompute.SetBufferData("myGlobalVectorBuffer", ref myGlobalVectorBuffer);
  
 In order to use them in your compute shader, they first need to be linked to your GPU Compute instance as shown:
 
@@ -50,7 +50,7 @@ In order to use them in your compute shader, they first need to be linked to you
 ***
 ### Setting Thread Group Size:
 Thread group sizes can be automatically calculated based on your workload dimensions.
-First get the number of threads as declared in your compute shader:
+First get the number of threads as declared in your compute shader, e.g: [numthreads(8, 8, 1)]:
 
 	Vector3Int shaderNumOfThreads = new Vector3Int(8, 8, 1);
 
@@ -162,26 +162,26 @@ Unity C# code
 		        gpuCompute.SetFloat("halfScale", halfScale);
 		 
 		    	//the default kernel is 0, optionally a different kernel or multiple kernels can be set
-		        gpuCompute.SetBuffer<Vector3>("vertices", ref vertices); 
-		        gpuCompute.SetBuffer<Vector2>("uvs", ref uvs);
-		        gpuCompute.SetBuffer<Vector3>("normals", ref normals);
+		        gpuCompute.SetBuffer("vertices", ref vertices); 
+		        gpuCompute.SetBuffer("uvs", ref uvs);
+		        gpuCompute.SetBuffer("normals", ref normals);
 	
 	 		//execute kernel 0
 		        gpuCompute.Execute(0); 
 			//get the processed buffer data from GPU
-		        gpuCompute.GetBufferData<Vector3>("vertices", ref vertices); 
-		        gpuCompute.GetBufferData<Vector2>("uvs", ref uvs); 
-		        gpuCompute.GetBufferData<Vector3>("normals", ref normals);
+		        gpuCompute.GetBufferData("vertices", ref vertices); 
+		        gpuCompute.GetBufferData("uvs", ref uvs); 
+		        gpuCompute.GetBufferData("normals", ref normals);
 		 
 		 	//setting up to execute kernel 1
 		        gpuCompute.SetCalculatedThreadGroupSize2D(gridLength, gridLength, new Vector3Int(8, 8, 1)); 
 		 	//setting triangle buffer to kernel 1 only
-		        gpuCompute.SetBuffer<int>("triangles", ref triangles, new int[] { 1 }); 
+		        gpuCompute.SetBuffer("triangles", ref triangles, new int[] { 1 }); 
 	
 			//execute kernel 1
 		        gpuCompute.Execute(1); 
 		 	//get the processed buffer data from GPU
-		        gpuCompute.GetBufferData<int>("triangles", ref triangles);
+		        gpuCompute.GetBufferData("triangles", ref triangles);
 	  	}
 
 		//assign data to the mesh
