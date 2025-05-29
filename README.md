@@ -18,14 +18,13 @@ When you are done with your GPU Compute instance, make sure to dispose it to pre
   	gpuCompute.DisposeGlobal();
 
 ***
-### Creating & Setting Buffers/Textures/Variables:
-To create a buffer simply input the buffer name, and the actual data to be passed into the buffer (the data struct type and length of the data is used to automatically set the size of the buffer). Empty buffers can also be made by supplying the data struct type.
+### Setting & Getting Buffers/Textures/Variables:
+To create a buffer simply input the buffer name, and the actual data to be passed into the buffer (the data struct type and length of the data is used to automatically set the size of the buffer). Empty buffers can also be made by supplying the data struct type:
 	
  	gpuCompute.SetBuffer("vertices", ref vertices);
  	gpuCompute.SetBuffer("uvs", ref uvs);
   	gpuCompute.CreateEmptyBuffer<int>("myEmptyBuffer", myEmptyBufferLength);
  	
-
 Buffer data, textures and variables values can be set like so:
 
 	gpuCompute.SetInt("myInt", myInt);
@@ -34,13 +33,19 @@ Buffer data, textures and variables values can be set like so:
    	gpuCompute.SetBufferData("myVectorBuffer", ref myVectorBuffer);
    	gpuCompute.SetRenderTexture("myRenderTexture", myRenderTexture);
 
+Buffer data can be retrieved as shown (a reference list/array of the same data type and length must be supplied to write the buffer data to):
+
+	Vector3[] myVectorBuffer = new Vector3[100];
+	gpuCompute.GetBufferData("myVectorBuffer", ref myVectorBuffer);
+
 ***
 ### Global Buffers/Textures:
-Global buffers can be made and set in the same way local buffers are set.
+Global buffers can be set and retrieved in the same way as local buffers:
 
 	GPUCompute.SetGlobalBuffer("globalVertices", ref vertices);	
 	GPUCompute.CreateEmptyGlobalBuffer<Vector3>("myEmptyGlobalBuffer", myEmptyGlobalBufferLength);
  	GPUCompute.SetBufferData("myGlobalVectorBuffer", ref myGlobalVectorBuffer);
+  	GPUCompute.GetBufferData("myGlobalUVBuffer", ref myGlobalUVBuffer);
  
 In order to use them in your compute shader, they first need to be linked to your GPU Compute instance as shown:
 
