@@ -1,5 +1,13 @@
 # GPU Compute (Unity)
-GPU Compute provides an easy way to setup & execute GPU compute shaders in Unity. Create and manage buffers, track GPU memory usage & execution time, automatically calculate thread group sizes & buffer strides- all in one class.
+GPU Compute provides an easy way to setup & execute GPU compute shaders in Unity.
+
+- Reduces the amount of code and complexity to execute a compute shader
+- Create, edit and read buffers easily (buffer strides & lengths are calculated automatically)
+- Automatically calculate optimal GPU thread group sizes for your workload
+- Asynchronous execution
+- Track GPU memory usage
+- Track compute execution time
+- Centralized in a single class
 
 ### Importing/Installing:
 Simply add the entire folder into your projects Assets folder.
@@ -19,7 +27,7 @@ When you are done with your GPU Compute instance, make sure to dispose it to pre
 
 ***
 ### Setting & Getting Buffers/Textures/Variables:
-To create a buffer simply input the buffer name, and the actual data to be passed into the buffer (the data struct type and length of the data is used to automatically set the size of the buffer). Empty buffers can also be made by supplying the data struct type:
+To create a buffer simply input the buffer name, and the actual data to be passed into the buffer (the data struct type and length of the data is used to automatically set the size of the buffer). Empty buffers can also be made by supplying the data struct type and length:
 	
  	gpuCompute.SetBuffer("vertices", ref vertices);
  	gpuCompute.SetBuffer("uvs", ref uvs);
@@ -100,7 +108,7 @@ For a three-dimensional workload (e.g. a volume) pass the width, length, depth a
 
 ***
 ### Executing:
-With buffers set, and the thread group size set, the compute shader can be executed. 
+After setting any required buffers/variables, and the thread group size, the compute shader can be executed. 
 For standard execution (non async) simply run the following:
 
  	gpuCompute.Execute();
@@ -134,6 +142,7 @@ The amount of time it took for the last computation to finish is also tracked an
   
 ***
 # Example - Creating a subdivision plane:
+This example shows how to generate a subdivided plane using GPU Compute- showcasing the relatively small amount of GPU related code required to run two kernels in the compute shader.
 Unity C# code
 
 	public void GenerateSubdivisionPlane(ComputeShader computeSubdivisionPlaneShader, int subdivisions, float scale)
