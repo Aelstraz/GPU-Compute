@@ -142,8 +142,9 @@ The amount of time it took for the last computation to finish is also tracked an
   
 ***
 # Example - Creating a subdivision plane:
-This example shows how to generate a subdivided plane using GPU Compute- showcasing the relatively small amount of GPU related code required to run two kernels in the compute shader.
-Unity C# code
+This example shows how to generate a subdivided plane using GPU Compute- showcasing the relatively small amount of simple GPU related code required to run two kernels in the compute shader.
+
+C# code
 
 	public void GenerateSubdivisionPlane(ComputeShader computeSubdivisionPlaneShader, int subdivisions, float scale)
 	{
